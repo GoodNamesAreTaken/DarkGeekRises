@@ -1,7 +1,7 @@
 function GameplaySceneController() {
     this._keys = {};
     this._bombs = [];
-    this._floorsY = [6, 246, 486];
+    this._floorsY = [6, 246];
     this._currentFloor = 0;
 }
 
@@ -41,14 +41,16 @@ GameplaySceneController.prototype = {
     },
 
     onKeyDown: function(key) {
+        if ([cc.KEY.z, cc.KEY.w, cc.KEY.y].indexOf(key) != -1 && this._currentAction) {
+            this[this._currentAction].call(this);
+            this._currentAction = null;
+        } else if (key === cc.KEY.x) {
+            this._shout();
+        }
         this._keys[key] = true;
     },
 
     onKeyUp: function(key) {
-        if (this._keys[cc.KEY.space] && this._currentAction) {
-            this[this._currentAction].call(this);
-            this._currentAction = null;
-        }
         this._keys[key] = false;
     },
 
@@ -236,7 +238,24 @@ GameplaySceneController.prototype = {
             }, this),
             cc.Show.create()
         ]));
+    },
+
+    //powerups
+    _shout: function() {
+       this._eachNPCInRange(200, function(npc) {
+           npc.controller.runAway(this.hero.getPosition());
+       });
+    },
+
+
+    _eachNPCInRange: function(range, fn) {
+        var heroPos = this.hero.getPosition();
+        this._npcs.forEach(function(npc) {
+            var npcPos = npc.getPosition();
+            if (Math.abs(npcPos.x - heroPos.x) <= range && Math.abs(npcPos.y - heroPos.y) < 0.1) {
+                fn.call(this, npc);
+            }
+        }, this); 
     }
 };
-
 
