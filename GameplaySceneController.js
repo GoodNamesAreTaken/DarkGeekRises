@@ -24,7 +24,7 @@ GameplaySceneController.prototype = {
             return child.controller && child.controller.isDoor;
         });
 
-        this.rootNode.runAction(cc.Follow.create(this.hero, cc.rect(0, 0, 2100, 720)));
+        //this.rootNode.runAction(cc.Follow.create(this.hero, cc.rect(0, 0, 2100, 720)));
 
         this.rootNode.update = this.update.bind(this);
         this.rootNode.onKeyDown = this.onKeyDown.bind(this);
@@ -32,7 +32,7 @@ GameplaySceneController.prototype = {
     },
 
     _scheduleBomb: function() {
-        var interval = 3 + Math.random(10);
+        var interval = 10 + Math.random(10);
         this.rootNode.scheduleOnce(this._spawnBomb.bind(this), interval);
     },
 
@@ -172,7 +172,7 @@ GameplaySceneController.prototype = {
     _spawnBomb: function() {
         var bomb = cc.BuilderReader.load('Bomb.ccbi'),
             y = this._floorsY[Math.floor(Math.random() * this._floorsY.length)],
-            x = 150 + Math.floor(Math.random() * 1950);
+            x = 150 + Math.floor(Math.random() * 750);
         bomb.setPosition(cc.p(x, y));
         bomb.controller.setLayer(this.level);
         bomb.controller.setNPCs(this._npcs);

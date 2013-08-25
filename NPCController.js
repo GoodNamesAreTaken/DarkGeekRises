@@ -77,7 +77,7 @@ NPCController.prototype = {
             this._direction = -1;
         }
 
-        this._toWalkLeft = 2100;
+        this._toWalkLeft = 900;
         this._speed = NPCController.runSpeed;
     },
 
@@ -94,7 +94,7 @@ NPCController.prototype = {
     _isOutOfRightBound: function () {
         var x = this.rootNode.getPosition().x,
             halfWidth = this.rootNode.getContentSize().width;
-        return x + halfWidth > 2100 - 150;
+        return x + halfWidth > 900;
     },
 
     _changeDirection: function() {
