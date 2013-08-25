@@ -39,11 +39,24 @@ HeroController.prototype = {
 
     updateAction: function(action) {
         this.actionLabel.setString(action);
+        if (!action || action.length === 0) {
+            this.actionLabel.setVisible(false);
+        } else {
+            this.actionLabel.setVisible(true);
+        }
     },
 
     pickBomb: function(bomb) {
         this._bomb = bomb;
+        this.timerLabel.setVisible(true);
+        this.timerLabel.setString(bomb.controller.counter);
         bomb.removeFromParent(false);
+    },
+
+    onBombTick: function() {
+        if (this.isCarryingBomb()) {
+            this.timerLabel.setString(this._bomb.controller.counter);
+        }
     },
 
     isCarryingBomb: function(bomb) {
@@ -56,12 +69,14 @@ HeroController.prototype = {
     dropBomb: function () {
         var bomb = this._bomb;
         this._bomb = null;
+        this.timerLabel.setVisible(false);
         return bomb;
     },
 
     removeBombIfCarrying: function (bomb) {
         if (this.isCarryingBomb(bomb)) {
             this._bomb = null;
+            this.timerLabel.setVisible(false);
         }
     }
 };

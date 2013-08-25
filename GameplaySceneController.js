@@ -202,6 +202,8 @@ GameplaySceneController.prototype = {
                 i++;
             }
         }
+
+        this.hero.controller.onBombTick();
     },
 
     _removeContainerOfBomb: function(bomb) {
