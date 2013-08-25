@@ -3,7 +3,7 @@ function GameplaySceneController() {
     this._bombs = [];
     this._minSpawnTime = 10;
     this._maxSpawnTime = 14;
-    this._floorsY = [6, 246];
+    this._floorsY = [9, 209, 409];
     this._currentFloor = 0;
     this._bombsSpawned = 0;
 }
@@ -140,7 +140,7 @@ GameplaySceneController.prototype = {
             doorCurrentFloor;
 
         this._floorsY.some(function(y, i) {
-            if (Math.abs(doorY - y) < 0.1) {
+            if (Math.abs(doorY - y) <= 9) {
                 doorCurrentFloor = i;
                 return true;
             }
@@ -164,7 +164,7 @@ GameplaySceneController.prototype = {
 
         return cc.rectGetMinX(nodeBox) >= cc.rectGetMinX(doorBox) &&
             cc.rectGetMaxX(nodeBox) <= cc.rectGetMaxX(doorBox) &&
-            Math.abs(cc.rectGetMinY(nodeBox) - cc.rectGetMinY(doorBox)) < 0.1;
+            Math.abs(cc.rectGetMinY(nodeBox) - cc.rectGetMinY(doorBox)) <= 8;
     },
 
     _collides: function(node1, node2) {

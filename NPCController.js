@@ -1,5 +1,4 @@
 function NPCController() {
-    this._direction = Math.floor(Math.random() * 2) || -1;
     this._toWaitBeforeNextDoor = 0;
     this._speed = NPCController.walkSpeed;
 }
@@ -15,6 +14,7 @@ NPCController.prototype = {
     constructor: NPCController,
 
     onDidLoadFromCCB: function () {
+        this._setDirection(Math.floor(Math.random() * 2) || -1);
         this.rootNode.scheduleUpdate();
         this.rootNode.update = this.update.bind(this);
         this._startWalking();
@@ -32,10 +32,10 @@ NPCController.prototype = {
         this._toWalkLeft -= dist;
 
         if (this._isOutOfLeftBound()) {
-            this._direction = 1;
+            this._setDirection(1);
             this._startWalking();
         } else if (this._isOutOfRightBound()) {
-            this._direction = -1;
+            this._setDirection(-1);
             this._startWalking();
         } else if (this._toWalkLeft <= 0) {
             this._changeDirection();
@@ -72,9 +72,9 @@ NPCController.prototype = {
 
     runAway: function(pointFrom) {
         if (this.rootNode.getPosition().x > pointFrom.x) {
-            this._direction = 1;
+            this._setDirection(1);
         } else {
-            this._direction = -1;
+            this._setDirection(-1);
         }
 
         this._toWalkLeft = 900;
@@ -88,7 +88,7 @@ NPCController.prototype = {
     _isOutOfLeftBound: function () {
         var x = this.rootNode.getPosition().x,
             halfWidth = this.rootNode.getContentSize().width;
-        return x - halfWidth / 2 < 150;
+        return x - halfWidth / 2 < 0;
     },
 
     _isOutOfRightBound: function () {
@@ -98,8 +98,13 @@ NPCController.prototype = {
     },
 
     _changeDirection: function() {
-        this._direction *= -1;
+        this._setDirection(-this._direction);
         this._startWalking();
+    },
+
+    _setDirection: function(direction) {
+        this._direction = direction;
+        this.sprite.setFlipX(this._direction === -1);
     },
 
     _startWalking: function () {

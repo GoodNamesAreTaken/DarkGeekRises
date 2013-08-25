@@ -8,6 +8,7 @@ HeroController.prototype = {
     constructor: HeroController,
 
     moveLeft: function (dt) {
+        this.sprite.setFlipX(true);
         var pos = this.rootNode.getPosition(),
             halfWidth = this.rootNode.getContentSize().width;
         pos.x -= HeroController.SPEED * dt;
@@ -23,6 +24,7 @@ HeroController.prototype = {
     },
 
     moveRight: function (dt) {
+        this.sprite.setFlipX(false);
         var pos = this.rootNode.getPosition(),
             halfWidth = this.rootNode.getContentSize().width;
         pos.x += HeroController.SPEED * dt;
