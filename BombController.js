@@ -46,7 +46,7 @@ BombController.prototype = {
             this._container.explode();
             return;
         }
-        var explosion = cc.BuilderReader.load('explosion.ccbi');
+        var explosion = cc.BuilderReader.load('Explosion.ccbi');
         explosion.setPosition(this.rootNode.getPosition());
         this._layer.addChild(explosion);
         this._killNPCS();
