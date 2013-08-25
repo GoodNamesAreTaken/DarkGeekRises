@@ -1,8 +1,11 @@
 function GameplaySceneController() {
     this._keys = {};
     this._bombs = [];
+    this._minSpawnTime = 10;
+    this._maxSpawnTime = 14;
     this._floorsY = [6, 246];
     this._currentFloor = 0;
+    this._bombsSpawned = 0;
 }
 
 GameplaySceneController.prototype = {
@@ -10,7 +13,7 @@ GameplaySceneController.prototype = {
 
     onDidLoadFromCCB: function() {
         this.rootNode.scheduleUpdate();
-        this._scheduleBomb();
+        this.rootNode.scheduleOnce(this._spawnBomb.bind(this), 5);
         this._scheduleBombTicks();
         this._npcs = this.level.getChildren().filter(function(child) {
             return child.controller && child.controller.isNPC;
@@ -32,7 +35,7 @@ GameplaySceneController.prototype = {
     },
 
     _scheduleBomb: function() {
-        var interval = 10 + Math.random(10);
+        var interval = this._minSpawnTime + Math.random() * (this._maxSpawnTime - this._minSpawnTime);
         this.rootNode.scheduleOnce(this._spawnBomb.bind(this), interval);
     },
 
@@ -179,6 +182,12 @@ GameplaySceneController.prototype = {
         this._bombs.push(bomb);
         this.level.addChild(bomb);
         this._scheduleBomb();
+        this._bombsSpawned++;
+        if (this._bombsSpawned % 2 === 0 && this._minSpawnTime > 1) {
+            this._minSpawnTime--;
+        } else if (this._maxSpawnTime > 3) {
+            this._maxSpawnTime--;
+        }
     },
 
     _bombTick: function() {
