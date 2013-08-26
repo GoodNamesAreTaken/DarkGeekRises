@@ -13,6 +13,10 @@ ContainerController.prototype = {
         return this._hasBomb;
     },
 
+    removeBomb: function() {
+        this._hasBomb = false;
+    },
+
     explode: function() {
         this.rootNode.removeFromParent(true);
     }

@@ -8,6 +8,7 @@ function GameplaySceneController() {
     this._powers = [
         {icon: 'Shout.png', func: '_shout', chance: 5},
         {icon: 'super_shout.png', func: '_superShout', chance: 3},
+        {icon: 'defuse_kit.png', func: '_defuse', chance: 1, instant: true}
     ];
     this._currentFloor = 0;
     this._bombsSpawned = 0;
@@ -140,8 +141,13 @@ GameplaySceneController.prototype = {
 
     _checkPowerUp: function() {
         if (this._powerUp && this._heroCollides(this._powerUp)) {
-            this._currentPower = this._powerUp.controller.power.func;
-            this.hud.controller.setPowerUpIcon(this._powerUp.controller.power.icon);
+            var power = this._powerUp.controller.power;
+            if (power.instant) {
+                this[power.func].call(this);
+            } else {
+                this._currentPower = power.func;
+                this.hud.controller.setPowerUpIcon(power.icon);
+            }
             this.removePowerUp(this._powerUp);
         }
     },
@@ -340,6 +346,16 @@ GameplaySceneController.prototype = {
        }, this);
     },
 
+    _defuse: function() {
+        this._bombs.forEach(function(bomb) {
+            bomb.removeFromParent(true);
+        });
+        this._containers.forEach(function(container) {
+            container.controller.removeBomb();
+        });
+        this._bombs = [];
+        this.hero.controller.removeBombIfCarrying();
+    },
 
     _eachNPCInRange: function(range, fn) {
         var heroPos = this.hero.getPosition();
