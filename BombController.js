@@ -21,13 +21,10 @@ BombController.prototype = {
         return this.counter <= 0;
     },
 
-    setLayer: function(layer) {
-        this._layer = layer;
+    setGameController: function(controller) {
+        this._gameCtrl = controller;
     },
 
-    getLayer: function() {
-        return this._layer;
-    },
 
     setContainer: function(container) {
         this._container = container;
@@ -48,18 +45,22 @@ BombController.prototype = {
         }
         var explosion = cc.BuilderReader.load('Explosion.ccbi');
         explosion.setPosition(this.rootNode.getPosition());
-        this._layer.addChild(explosion);
+        this._gameCtrl.level.addChild(explosion);
         this._killNPCS();
         this.rootNode.removeFromParent(true);
 
     },
 
     _killNPCS: function() {
-        this._npcs.forEach(function(npc) {
+        this._gameCtrl._npcs.forEach(function(npc) {
             if (this._inRadius(npc)) {
                 npc.controller.kill();
             }
         }, this);
+
+        if (this._inRadius(this._gameCtrl.hero)) {
+            this._gameCtrl.hitHero();
+        }
     },
 
     _inRadius: function(node) {

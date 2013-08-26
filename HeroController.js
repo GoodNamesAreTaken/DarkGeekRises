@@ -80,5 +80,10 @@ HeroController.prototype = {
             this._bomb = null;
             this.timerLabel.setVisible(false);
         }
+    },
+
+    animateHit: function() {
+        this.rootNode.animationManager.runAnimationsForSequenceNamed('flicker');
     }
+
 };

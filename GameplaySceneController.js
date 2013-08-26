@@ -12,6 +12,7 @@ function GameplaySceneController() {
     ];
     this._currentFloor = 0;
     this._bombsSpawned = 0;
+    this._lives = 3;
 }
 
 GameplaySceneController.prototype = {
@@ -213,7 +214,7 @@ GameplaySceneController.prototype = {
             y = this._floorsY[Math.floor(Math.random() * this._floorsY.length)],
             x = 60 + Math.floor(Math.random() * (900 - 120));
         bomb.setPosition(cc.p(x, y));
-        bomb.controller.setLayer(this.level);
+        bomb.controller.setGameController(this);
         bomb.controller.setNPCs(this._npcs);
         this._bombs.push(bomb);
         this.level.addChild(bomb);
@@ -274,6 +275,15 @@ GameplaySceneController.prototype = {
     removeContainer: function(container) {
         container.removeFromParent(true);
         this._containers.splice(this._containers.indexOf(container), 1);
+    },
+
+    hitHero: function() {
+        this._lives--;
+        if (this._lives <= 0) {
+            this._gameOver();
+        } else {
+            this.hero.controller.animateHit();
+        }
     },
 
     _gameOver: function() {
