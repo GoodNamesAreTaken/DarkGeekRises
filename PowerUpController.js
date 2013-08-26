@@ -1,5 +1,4 @@
 function PowerUpController() {
-    this.power = '';
 }
 
 PowerUpController.prototype = {
@@ -11,6 +10,12 @@ PowerUpController.prototype = {
 
     setGameController: function(controller) {
         this._controller = controller;
+    },
+
+    setPower: function(power) {
+        this.power = power;
+        var texture = cc.TextureCache.getInstance().addImage(power.icon);
+        this.sprite.setTexture(texture);
     },
 
     _removeSelf: function() {

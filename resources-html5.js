@@ -1,4 +1,5 @@
 var ccb_resources = [
+    {type:'ccbi', src:"HUDLayer.ccbi"},
     {type:'image', src:"expl.png"},
     {type:'image', src:"bomb.png"},
     {type:'image', src:"palm.png"},
@@ -8,6 +9,7 @@ var ccb_resources = [
     {type:'ccbi', src:"UpDoor.ccbi"},
     {type:'ccbi', src:"Container.ccbi"},
     {type:'ccbi', src:"GameOverScene.ccbi"},
+    {type:'image', src:"empty_powerup.png"},
     {type:'ccbi', src:"Level.ccbi"},
     {type:'ccbi', src:"GameplayScene.ccbi"},
     {type:'ccbi', src:"Explosion.ccbi"},
@@ -15,8 +17,9 @@ var ccb_resources = [
     {type:'ccbi', src:"PowerUp.ccbi"},
     {type:'image', src:"batman/batman.png"},
     {type:'image', src:"bgscreen.png"},
+    {type:'image', src:"super_shout.png"},
     {type:'image', src:"joker/joker.png"},
     {type:'ccbi', src:"Batman.ccbi"},
-    {type:'ccbi', src:"DownDoor.ccbi"},
     {type:'ccbi', src:"NPC.ccbi"},
+    {type:'ccbi', src:"DownDoor.ccbi"},
 ];

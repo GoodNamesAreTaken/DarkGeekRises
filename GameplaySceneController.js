@@ -6,7 +6,8 @@ function GameplaySceneController() {
     this._currentPower = null;
     this._floorsY = [9, 209, 409];
     this._powers = [
-        '_shout'
+        {icon: 'Shout.png', func: '_shout', chance: 5},
+        {icon: 'super_shout.png', func: '_superShout', chance: 3},
     ];
     this._currentFloor = 0;
     this._bombsSpawned = 0;
@@ -63,6 +64,7 @@ GameplaySceneController.prototype = {
             this._currentAction = null;
         } else if (key === cc.KEY.x && this._currentPower) {
             this[this._currentPower].call(this);
+            this.hud.controller.clearPowerUp();
             this._currentPower = null;
         }
         this._keys[key] = true;
@@ -138,7 +140,8 @@ GameplaySceneController.prototype = {
 
     _checkPowerUp: function() {
         if (this._powerUp && this._heroCollides(this._powerUp)) {
-            this._currentPower = this._powerUp.controller.power;
+            this._currentPower = this._powerUp.controller.power.func;
+            this.hud.controller.setPowerUpIcon(this._powerUp.controller.power.icon);
             this.removePowerUp(this._powerUp);
         }
     },
@@ -216,14 +219,33 @@ GameplaySceneController.prototype = {
     _spawnPowerUp: function() {
         var powerUp = cc.BuilderReader.load('PowerUp.ccbi'),
             y = this._floorsY[Math.floor(Math.random() * this._floorsY.length)],
-            x = 60 + Math.floor(Math.random() * (900 - 120));
+            x = 60 + Math.floor(Math.random() * (900 - 120)),
+            power = this._randomPower();
 
         powerUp.setPosition(cc.p(x, y));
-        powerUp.controller.power = this._powers[Math.floor(Math.random() * this._powers.length)]; 
+        powerUp.controller.setPower(power);
         powerUp.controller.setGameController(this);
         this.level.addChild(powerUp);
         this._powerUp = powerUp;
         this._schedulePowerUp();
+    },
+
+    _randomPower: function() {
+        var maxChance = this._powers.reduce(function(sum, power) {
+            return sum + power.chance;
+        }, 0);
+        var chance = Math.floor(Math.random() * maxChance),
+                     lastChance = 0,
+                     result;
+        
+        this._powers.some(function(power) {
+            lastChance += power.chance;
+            if (chance < lastChance) {
+                result = power;
+                return true;
+            }
+        });
+        return result;
     },
 
     removePowerUp: function() {
@@ -310,6 +332,12 @@ GameplaySceneController.prototype = {
        this._eachNPCInRange(200, function(npc) {
            npc.controller.runAway(this.hero.getPosition());
        });
+    },
+
+    _superShout: function() {
+       this._npcs.forEach(function(npc) {
+           npc.controller.runAway(this.hero.getPosition());
+       }, this);
     },
 
 

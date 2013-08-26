@@ -17,6 +17,7 @@
     'ExplosionController.js',
     'GameplaySceneController.js',
     'HeroController.js',
+    'HUDController.js',
     'NPCController.js',
     'PowerUpController.js',
 
