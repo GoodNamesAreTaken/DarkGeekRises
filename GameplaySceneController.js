@@ -86,6 +86,8 @@ GameplaySceneController.prototype = {
                 this.hero.controller.moveLeft(dt);
             } else if (this._keys[cc.KEY.right]) {
                 this.hero.controller.moveRight(dt);
+            } else {
+                this.hero.controller.stop();
             }
         }
 

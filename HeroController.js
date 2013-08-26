@@ -1,5 +1,5 @@
 function HeroController() {
-    
+   this._isRunning = false; 
 }
 
 HeroController.SPEED = 300;
@@ -8,6 +8,7 @@ HeroController.prototype = {
     constructor: HeroController,
 
     moveLeft: function (dt) {
+        this._playWalkAnimation();
         this.sprite.setFlipX(true);
         var pos = this.rootNode.getPosition(),
             halfWidth = this.rootNode.getContentSize().width / 2;
@@ -24,6 +25,7 @@ HeroController.prototype = {
     },
 
     moveRight: function (dt) {
+        this._playWalkAnimation();
         this.sprite.setFlipX(false);
         var pos = this.rootNode.getPosition(),
             halfWidth = this.rootNode.getContentSize().width / 2;
@@ -37,6 +39,28 @@ HeroController.prototype = {
         if (this._bomb) {
             this._bomb.setPosition(pos);
         }
+    },
+
+    stop: function() {
+        if (!this._isRunning) {
+            return;
+        }
+
+        this.rootNode.animationManager.runAnimationsForSequenceNamed('stand');
+
+        this._isRunning = false;
+    },
+
+    _playWalkAnimation: function() {
+        if (this._isRunning) {
+            return;
+        }
+
+        var animation = this.isCarryingBomb() ? 'run_bomb' : 'run';
+
+        this.rootNode.animationManager.runAnimationsForSequenceNamed(animation);
+
+        this._isRunning = true;
     },
 
     updateAction: function(action) {
@@ -71,6 +95,7 @@ HeroController.prototype = {
     dropBomb: function () {
         var bomb = this._bomb;
         this._bomb = null;
+        this._isRunning = false;
         this.timerLabel.setVisible(false);
         return bomb;
     },
@@ -78,12 +103,14 @@ HeroController.prototype = {
     removeBombIfCarrying: function (bomb) {
         if (this.isCarryingBomb(bomb)) {
             this._bomb = null;
+            this._isRunning = false;
             this.timerLabel.setVisible(false);
         }
     },
 
     animateHit: function() {
-        this.rootNode.animationManager.runAnimationsForSequenceNamed('flicker');
+        this.rootNode.runAction(cc.Blink.create(1, 4));
+        //this.rootNode.animationManager.runAnimationsForSequenceNamed('flicker');
     }
 
 };
