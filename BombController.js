@@ -39,6 +39,7 @@ BombController.prototype = {
     },
 
     _explode: function () {
+        cc.AudioEngine.getInstance().playEffect('bomb');
         if (this._container) {
             this._container.explode();
             return;

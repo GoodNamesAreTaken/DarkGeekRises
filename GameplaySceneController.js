@@ -19,6 +19,7 @@ GameplaySceneController.prototype = {
     constructor: GameplaySceneController,
 
     onDidLoadFromCCB: function() {
+        this._startTime = new Date().getTime();
         this.rootNode.scheduleUpdate();
         this.rootNode.scheduleOnce(this._spawnBomb.bind(this), 5);
         this._schedulePowerUp();
@@ -148,6 +149,7 @@ GameplaySceneController.prototype = {
 
     _checkPowerUp: function() {
         if (this._powerUp && this._heroCollides(this._powerUp)) {
+            cc.AudioEngine.getInstance().playEffect('pickup');
             var power = this._powerUp.controller.power;
             if (power.instant) {
                 this[power.func].call(this);
@@ -212,6 +214,7 @@ GameplaySceneController.prototype = {
     },
 
     _spawnBomb: function() {
+        cc.AudioEngine.getInstance().playEffect('drop');
         var bomb = cc.BuilderReader.load('Bomb.ccbi'),
             y = this._floorsY[Math.floor(Math.random() * this._floorsY.length)],
             x = 60 + Math.floor(Math.random() * (900 - 120));
@@ -285,11 +288,14 @@ GameplaySceneController.prototype = {
             this._gameOver();
         } else {
             this.hero.controller.animateHit();
+            this.hud.controller.setLives(this._lives);
         }
     },
 
     _gameOver: function() {
+        var totalPlayed = new Date().getTime() - this._startTime;
         var scene = cc.BuilderReader.loadAsScene('GameOverScene.ccbi');
+        scene.getChildren()[0].controller.setTotalPlayedTime(totalPlayed);
         cc.Director.getInstance().replaceScene(scene);
     },
 

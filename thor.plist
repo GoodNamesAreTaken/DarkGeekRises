@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>thor/panic_00.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 132}, {99, 114}}</string>
+			<key>offset</key>
+			<string>{0, 9}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {99, 114}}</string>
+			<key>sourceSize</key>
+			<string>{99, 132}</string>
+		</dict>
+		<key>thor/panic_01.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{84, 1}, {81, 129}}</string>
+			<key>offset</key>
+			<string>{-8, -1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 3}, {81, 129}}</string>
+			<key>sourceSize</key>
+			<string>{99, 132}</string>
+		</dict>
+		<key>thor/walk_00.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {81, 129}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {81, 129}}</string>
+			<key>sourceSize</key>
+			<string>{81, 129}</string>
+		</dict>
+		<key>thor/walk_01.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{167, 1}, {81, 126}}</string>
+			<key>offset</key>
+			<string>{0, -2}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 3}, {81, 126}}</string>
+			<key>sourceSize</key>
+			<string>{81, 129}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{256, 256}</string>
+		<key>textureFileName</key>
+		<string>thor.png</string>
+	</dict>
+</dict>
+</plist>

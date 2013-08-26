@@ -3,7 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>filenames</key>
-	<dict/>
+	<dict>
+		<key>bomb.wav</key>
+		<string>bomb.mp3</string>
+		<key>drop.wav</key>
+		<string>drop.mp3</string>
+		<key>pickup.wav</key>
+		<string>pickup.mp3</string>
+	</dict>
 	<key>metadata</key>
 	<dict>
 		<key>version</key>

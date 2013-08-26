@@ -35,6 +35,7 @@ NPCController.prototype = {
             this._setDirection(1);
             this._startWalking();
         } else if (this._isOutOfRightBound()) {
+            this._setDirection(1);
             this._setDirection(-1);
             this._startWalking();
         } else if (this._toWalkLeft <= 0) {
@@ -75,6 +76,7 @@ NPCController.prototype = {
     },
 
     runAway: function(pointFrom) {
+        this.rootNode.animationManager.runAnimationsForSequenceNamed('panic');
         if (this.rootNode.getPosition().x > pointFrom.x) {
             this._setDirection(1);
         } else {
@@ -113,6 +115,7 @@ NPCController.prototype = {
 
     _startWalking: function () {
         this._speed = NPCController.walkSpeed;
+        this.rootNode.animationManager.runAnimationsForSequenceNamed('walk');
         this._toWalkLeft = NPCController.minWalk + 
             Math.floor(Math.random() * NPCController._walkRange);
 

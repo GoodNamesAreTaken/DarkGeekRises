@@ -11,5 +11,11 @@ HUDController.prototype = {
 
     clearPowerUp: function() {
         this.setPowerUpIcon('empty_powerup.png');
+    },
+
+    setLives: function(lives) {
+        for (var i=1; i<=3; i++) {
+            this['health' + i].setVisible(i<=lives);
+        }
     }
 };

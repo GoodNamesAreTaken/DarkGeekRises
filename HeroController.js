@@ -46,7 +46,8 @@ HeroController.prototype = {
             return;
         }
 
-        this.rootNode.animationManager.runAnimationsForSequenceNamed('stand');
+        var animation = this.isCarryingBomb() ? 'stand_bomb' : 'stand';
+        this.rootNode.animationManager.runAnimationsForSequenceNamed(animation);
 
         this._isRunning = false;
     },
@@ -95,7 +96,7 @@ HeroController.prototype = {
     dropBomb: function () {
         var bomb = this._bomb;
         this._bomb = null;
-        this._isRunning = false;
+        this._isRunning = !this._isRunning;
         this.timerLabel.setVisible(false);
         return bomb;
     },
@@ -103,7 +104,7 @@ HeroController.prototype = {
     removeBombIfCarrying: function (bomb) {
         if (this.isCarryingBomb(bomb)) {
             this._bomb = null;
-            this._isRunning = false;
+            this._isRunning = !this._isRunning;
             this.timerLabel.setVisible(false);
         }
     },

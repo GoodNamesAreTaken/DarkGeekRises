@@ -15,6 +15,7 @@
     'ContainerController.js',
     'DoorController.js',
     'ExplosionController.js',
+    'GameoverSceneController.js',
     'GameplaySceneController.js',
     'HeroController.js',
     'HUDController.js',

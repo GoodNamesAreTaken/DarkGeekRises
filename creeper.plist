@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>creeper/panic_00.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 144}, {60, 93}}</string>
+			<key>offset</key>
+			<string>{0, 2}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 24}, {60, 93}}</string>
+			<key>sourceSize</key>
+			<string>{60, 147}</string>
+		</dict>
+		<key>creeper/panic_01.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {45, 141}}</string>
+			<key>offset</key>
+			<string>{-4, -3}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{3, 6}, {45, 141}}</string>
+			<key>sourceSize</key>
+			<string>{60, 147}</string>
+		</dict>
+		<key>creeper/walk_00.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{48, 1}, {45, 117}}</string>
+			<key>offset</key>
+			<string>{0, -15}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 30}, {45, 117}}</string>
+			<key>sourceSize</key>
+			<string>{45, 147}</string>
+		</dict>
+		<key>creeper/walk_01.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{63, 120}, {45, 114}}</string>
+			<key>offset</key>
+			<string>{0, -17}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 33}, {45, 114}}</string>
+			<key>sourceSize</key>
+			<string>{45, 147}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{256, 256}</string>
+		<key>textureFileName</key>
+		<string>creeper.png</string>
+	</dict>
+</dict>
+</plist>

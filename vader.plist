@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>vader/panic_00.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {87, 123}}</string>
+			<key>offset</key>
+			<string>{-1, 5}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{3, 3}, {87, 123}}</string>
+			<key>sourceSize</key>
+			<string>{96, 141}</string>
+		</dict>
+		<key>vader/panic_01.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{90, 1}, {96, 111}}</string>
+			<key>offset</key>
+			<string>{0, -15}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 30}, {96, 111}}</string>
+			<key>sourceSize</key>
+			<string>{96, 141}</string>
+		</dict>
+		<key>vader/walk_00.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 126}, {39, 123}}</string>
+			<key>offset</key>
+			<string>{-2, -9}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{9, 18}, {39, 123}}</string>
+			<key>sourceSize</key>
+			<string>{63, 141}</string>
+		</dict>
+		<key>vader/walk_01.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{42, 126}, {63, 120}}</string>
+			<key>offset</key>
+			<string>{0, -11}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 21}, {63, 120}}</string>
+			<key>sourceSize</key>
+			<string>{63, 141}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{256, 256}</string>
+		<key>textureFileName</key>
+		<string>vader.png</string>
+	</dict>
+</dict>
+</plist>

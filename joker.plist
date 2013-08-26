@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>joker/panic_00.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{57, 1}, {63, 111}}</string>
+			<key>offset</key>
+			<string>{0, 5}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {63, 111}}</string>
+			<key>sourceSize</key>
+			<string>{63, 123}</string>
+		</dict>
+		<key>joker/panic_01.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {54, 117}}</string>
+			<key>offset</key>
+			<string>{2, -3}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{6, 6}, {54, 117}}</string>
+			<key>sourceSize</key>
+			<string>{63, 123}</string>
+		</dict>
+		<key>joker/walk_00.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 120}, {51, 117}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {51, 117}}</string>
+			<key>sourceSize</key>
+			<string>{51, 117}</string>
+		</dict>
+		<key>joker/walk_01.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{54, 120}, {51, 114}}</string>
+			<key>offset</key>
+			<string>{0, -2}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 3}, {51, 114}}</string>
+			<key>sourceSize</key>
+			<string>{51, 117}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{256, 256}</string>
+		<key>textureFileName</key>
+		<string>joker.png</string>
+	</dict>
+</dict>
+</plist>

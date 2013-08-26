@@ -4,23 +4,62 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		<key>batman/scream1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {90, 144}}</string>
+			<key>offset</key>
+			<string>{3, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{6, 0}, {90, 144}}</string>
+			<key>sourceSize</key>
+			<string>{96, 144}</string>
+		</dict>
+		<key>batman/scream2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 147}, {90, 138}}</string>
+			<key>offset</key>
+			<string>{3, -3}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{6, 6}, {90, 138}}</string>
+			<key>sourceSize</key>
+			<string>{96, 144}</string>
+		</dict>
 		<key>batman/stay_00.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 1}, {54, 129}}</string>
+			<string>{{1, 418}, {54, 129}}</string>
 			<key>offset</key>
 			<string>{-3, -4}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{24, 9}, {54, 129}}</string>
 			<key>sourceSize</key>
 			<string>{108, 138}</string>
 		</dict>
+		<key>batman/stay_with_bomb.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 287}, {96, 129}}</string>
+			<key>offset</key>
+			<string>{0, -1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 3}, {96, 129}}</string>
+			<key>sourceSize</key>
+			<string>{96, 132}</string>
+		</dict>
 		<key>batman/walk_00.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{170, 1}, {105, 105}}</string>
+			<string>{{230, 376}, {105, 105}}</string>
 			<key>offset</key>
 			<string>{-1, 10}</string>
 			<key>rotated</key>
@@ -33,7 +72,7 @@
 		<key>batman/walk_01.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 260}, {96, 126}}</string>
+			<string>{{99, 257}, {96, 126}}</string>
 			<key>offset</key>
 			<string>{-3, -6}</string>
 			<key>rotated</key>
@@ -46,7 +85,7 @@
 		<key>batman/walk_02.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{117, 129}, {108, 108}}</string>
+			<string>{{209, 1}, {108, 108}}</string>
 			<key>offset</key>
 			<string>{0, 9}</string>
 			<key>rotated</key>
@@ -59,7 +98,7 @@
 		<key>batman/walk_03.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{99, 260}, {96, 126}}</string>
+			<string>{{132, 385}, {96, 126}}</string>
 			<key>offset</key>
 			<string>{-3, -6}</string>
 			<key>rotated</key>
@@ -72,7 +111,7 @@
 		<key>batman/with_bomb_00.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{111, 388}, {117, 105}}</string>
+			<string>{{206, 129}, {117, 105}}</string>
 			<key>offset</key>
 			<string>{0, 16}</string>
 			<key>rotated</key>
@@ -85,7 +124,7 @@
 		<key>batman/with_bomb_01.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 132}, {114, 126}}</string>
+			<string>{{93, 1}, {114, 126}}</string>
 			<key>offset</key>
 			<string>{8, -3}</string>
 			<key>rotated</key>
@@ -98,7 +137,7 @@
 		<key>batman/with_bomb_02.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 388}, {117, 108}}</string>
+			<string>{{197, 257}, {117, 108}}</string>
 			<key>offset</key>
 			<string>{0, 15}</string>
 			<key>rotated</key>
@@ -111,7 +150,7 @@
 		<key>batman/with_bomb_03.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{57, 1}, {111, 126}}</string>
+			<string>{{93, 129}, {111, 126}}</string>
 			<key>offset</key>
 			<string>{-8, -3}</string>
 			<key>rotated</key>
