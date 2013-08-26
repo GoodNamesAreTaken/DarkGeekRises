@@ -32,3 +32,27 @@ Object.defineProperty(ContainerController.prototype, 'isContainer', {
     enumerable: true,
     value: true
 });
+
+function ThrashCanController() {
+    ContainerController.apply(this, arguments);
+    this._shotsRemaining = 3;
+}
+
+ThrashCanController.prototype = Object.create(ContainerController.prototype, {
+    constructor: {
+        enumerable: true,
+        writable: true,
+        configurable: true,
+        value: ThrashCanController
+    }
+});
+
+ThrashCanController.prototype.explode = function() {
+    this._shotsRemaining--;
+    this.hasBomb = false;
+    if (this._shotsRemaining <= 0) {
+        ContainerController.prototype.explode.apply(this, arguments);
+    }
+};
+
+
