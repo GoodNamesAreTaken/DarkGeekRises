@@ -61,7 +61,7 @@ NPCController.prototype = {
             cc.CallFunc.create(function() {
                 this._inDoor = true;
             }, this),
-            cc.MoveTo.create(1, cc.p(this.rootNode.getPosition().x, floorY)),
+            cc.MoveTo.create(0.2, cc.p(this.rootNode.getPosition().x, floorY)),
             cc.CallFunc.create(function() {
                 this._inDoor = false;
                 this._toWaitBeforeNextDoor = 3;
@@ -88,13 +88,13 @@ NPCController.prototype = {
     _isOutOfLeftBound: function () {
         var x = this.rootNode.getPosition().x,
             halfWidth = this.rootNode.getContentSize().width;
-        return x - halfWidth / 2 < 0;
+        return x - halfWidth / 2 < 60;
     },
 
     _isOutOfRightBound: function () {
         var x = this.rootNode.getPosition().x,
             halfWidth = this.rootNode.getContentSize().width;
-        return x + halfWidth > 900;
+        return x + halfWidth > 840;
     },
 
     _changeDirection: function() {

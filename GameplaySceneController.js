@@ -3,7 +3,11 @@ function GameplaySceneController() {
     this._bombs = [];
     this._minSpawnTime = 10;
     this._maxSpawnTime = 14;
+    this._currentPower = null;
     this._floorsY = [9, 209, 409];
+    this._powers = [
+        '_shout'
+    ];
     this._currentFloor = 0;
     this._bombsSpawned = 0;
 }
@@ -14,6 +18,7 @@ GameplaySceneController.prototype = {
     onDidLoadFromCCB: function() {
         this.rootNode.scheduleUpdate();
         this.rootNode.scheduleOnce(this._spawnBomb.bind(this), 5);
+        this._schedulePowerUp();
         this._scheduleBombTicks();
         this._npcs = this.level.getChildren().filter(function(child) {
             return child.controller && child.controller.isNPC;
@@ -34,6 +39,11 @@ GameplaySceneController.prototype = {
         this.rootNode.onKeyUp = this.onKeyUp.bind(this);
     },
 
+    _schedulePowerUp: function() {
+        var interval = 10 + Math.random() * 5;
+        this.rootNode.scheduleOnce(this._spawnPowerUp.bind(this), interval);
+    },
+
     _scheduleBomb: function() {
         var interval = this._minSpawnTime + Math.random() * (this._maxSpawnTime - this._minSpawnTime);
         this.rootNode.scheduleOnce(this._spawnBomb.bind(this), interval);
@@ -47,8 +57,9 @@ GameplaySceneController.prototype = {
         if ([cc.KEY.z, cc.KEY.w, cc.KEY.y].indexOf(key) != -1 && this._currentAction) {
             this[this._currentAction].call(this);
             this._currentAction = null;
-        } else if (key === cc.KEY.x) {
-            this._shout();
+        } else if (key === cc.KEY.x && this._currentPower) {
+            this[this._currentPower].call(this);
+            this._currentPower = null;
         }
         this._keys[key] = true;
     },
@@ -67,6 +78,7 @@ GameplaySceneController.prototype = {
         }
 
         this._updateActionText();
+        this._checkPowerUp();
         this._checkNPCDoors();
     },
 
@@ -117,6 +129,13 @@ GameplaySceneController.prototype = {
         } else {
             this._currentAction = null;
             this.hero.controller.updateAction("");
+        }
+    },
+
+    _checkPowerUp: function() {
+        if (this._powerUp && this._heroCollides(this._powerUp)) {
+            this._currentPower = this._powerUp.controller.power;
+            this.removePowerUp(this._powerUp);
         }
     },
 
@@ -175,7 +194,7 @@ GameplaySceneController.prototype = {
     _spawnBomb: function() {
         var bomb = cc.BuilderReader.load('Bomb.ccbi'),
             y = this._floorsY[Math.floor(Math.random() * this._floorsY.length)],
-            x = 150 + Math.floor(Math.random() * 750);
+            x = 60 + Math.floor(Math.random() * (900 - 120));
         bomb.setPosition(cc.p(x, y));
         bomb.controller.setLayer(this.level);
         bomb.controller.setNPCs(this._npcs);
@@ -188,6 +207,24 @@ GameplaySceneController.prototype = {
         } else if (this._maxSpawnTime > 3) {
             this._maxSpawnTime--;
         }
+    },
+
+    _spawnPowerUp: function() {
+        var powerUp = cc.BuilderReader.load('PowerUp.ccbi'),
+            y = this._floorsY[Math.floor(Math.random() * this._floorsY.length)],
+            x = 60 + Math.floor(Math.random() * (900 - 120));
+
+        powerUp.setPosition(cc.p(x, y));
+        powerUp.controller.power = this._powers[Math.floor(Math.random() * this._powers.length)]; 
+        powerUp.controller.setGameController(this);
+        this.level.addChild(powerUp);
+        this._powerUp = powerUp;
+        this._schedulePowerUp();
+    },
+
+    removePowerUp: function() {
+        this._powerUp.removeFromParent(true);
+        this._powerUp = null;
     },
 
     _bombTick: function() {
@@ -242,7 +279,7 @@ GameplaySceneController.prototype = {
             cc.CallFunc.create(function() {
                 this._inDoor = true;
             }, this),
-            cc.MoveTo.create(1, cc.p(this.hero.getPosition().x,
+            cc.MoveTo.create(0.2, cc.p(this.hero.getPosition().x,
                                      this._floorsY[this._currentFloor])),
             cc.CallFunc.create(function() {
                 this._inDoor = false;

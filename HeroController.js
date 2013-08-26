@@ -12,8 +12,8 @@ HeroController.prototype = {
         var pos = this.rootNode.getPosition(),
             halfWidth = this.rootNode.getContentSize().width;
         pos.x -= HeroController.SPEED * dt;
-        if (pos.x - halfWidth <= 0) {
-            pos.x = halfWidth;
+        if (pos.x - halfWidth <= 60) {
+            pos.x = 60 + halfWidth;
         }
         this.rootNode.setPosition(pos);
 
@@ -29,8 +29,8 @@ HeroController.prototype = {
             halfWidth = this.rootNode.getContentSize().width;
         pos.x += HeroController.SPEED * dt;
 
-        if (pos.x + halfWidth > 900) {
-            pos.x = 900 - halfWidth;
+        if (pos.x + halfWidth > 840) {
+            pos.x = 840 - halfWidth;
         }
 
         this.rootNode.setPosition(pos);

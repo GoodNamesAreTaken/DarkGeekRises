@@ -14,9 +14,11 @@
           'BombController.js',
     'ContainerController.js',
     'DoorController.js',
+    'ExplosionController.js',
     'GameplaySceneController.js',
     'HeroController.js',
     'NPCController.js',
+    'PowerUpController.js',
 
             'resources-html5.js',
             'boot2-html5.js'
