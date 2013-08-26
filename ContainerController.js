@@ -9,6 +9,10 @@ ContainerController.prototype = {
         bomb.controller.setContainer(this);
     },
 
+    setGameController: function(controller) {
+        this._gameCtrl = controller;
+    },
+
     hasBomb: function() {
         return this._hasBomb;
     },
@@ -18,7 +22,7 @@ ContainerController.prototype = {
     },
 
     explode: function() {
-        this.rootNode.removeFromParent(true);
+        this._gameCtrl.removeContainer(this.rootNode);
     }
 };
 

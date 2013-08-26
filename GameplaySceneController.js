@@ -34,6 +34,10 @@ GameplaySceneController.prototype = {
             return child.controller && child.controller.isContainer;
         });
 
+        this._containers.forEach(function(container) {
+            container.controller.setGameController(this);
+        }, this);
+
         this._doors = this.level.getChildren().filter(function(child) {
             return child.controller && child.controller.isDoor;
         });
@@ -120,7 +124,7 @@ GameplaySceneController.prototype = {
             this._currentAction = '_pickBomb';
         } else if (carryingBomb) {
             var isNearContainer = this._containers.some(function(container) {
-                if (!container.controller.hasBomb() && this._heroCollides(container)) {
+                if (this._heroCollides(container)) {
                     this._containerToUse = container;
                     return true;
                 }
@@ -267,6 +271,11 @@ GameplaySceneController.prototype = {
         }
     },
 
+    removeContainer: function(container) {
+        container.removeFromParent(true);
+        this._containers.splice(this._containers.indexOf(container), 1);
+    },
+
     _gameOver: function() {
         var scene = cc.BuilderReader.loadAsScene('GameOverScene.ccbi');
         cc.Director.getInstance().replaceScene(scene);
@@ -278,7 +287,6 @@ GameplaySceneController.prototype = {
             bomb.controller.tick();
             if (bomb.controller.isExploded()) {
                 this.hero.controller.removeBombIfCarrying(bomb);
-                this._removeContainerOfBomb(bomb);
                 this._bombs.splice(i, 1);
             } else {
                 i++;
@@ -286,13 +294,6 @@ GameplaySceneController.prototype = {
         }
 
         this.hero.controller.onBombTick();
-    },
-
-    _removeContainerOfBomb: function(bomb) {
-        var container = bomb.controller.getContainer();
-        if (container) {
-            this._containers.splice(this._containers.indexOf(container), 1);
-        }
     },
 
     //spacebar actions
