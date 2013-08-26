@@ -24,6 +24,10 @@ GameplaySceneController.prototype = {
             return child.controller && child.controller.isNPC;
         });
 
+        this._npcs.forEach(function(npc) {
+            npc.controller.setGameController(this);
+        }, this);
+
         this._containers = this.level.getChildren().filter(function(child) {
             return child.controller && child.controller.isContainer;
         });
@@ -225,6 +229,19 @@ GameplaySceneController.prototype = {
     removePowerUp: function() {
         this._powerUp.removeFromParent(true);
         this._powerUp = null;
+    },
+
+    removeNPC: function(npc) {
+        npc.removeFromParent(true);
+        this._npcs.splice(this._npcs.indexOf(npc), 1);
+        if (this._npcs.length === 0) {
+            this._gameOver();
+        }
+    },
+
+    _gameOver: function() {
+        var scene = cc.BuilderReader.loadAsScene('GameOverScene.ccbi');
+        cc.Director.getInstance().replaceScene(scene);
     },
 
     _bombTick: function() {

@@ -1,6 +1,7 @@
 var ccb_resources = [
     {type:'image', src:"expl.png"},
     {type:'image', src:"bomb.png"},
+    {type:'image', src:"palm.png"},
     {type:'image', src:"door_up.png"},
     {type:'image', src:"door_down.png"},
     {type:'ccbi', src:"Bomb.ccbi"},
@@ -10,6 +11,7 @@ var ccb_resources = [
     {type:'ccbi', src:"Level.ccbi"},
     {type:'ccbi', src:"GameplayScene.ccbi"},
     {type:'ccbi', src:"Explosion.ccbi"},
+    {type:'image', src:"Shout.png"},
     {type:'ccbi', src:"PowerUp.ccbi"},
     {type:'image', src:"batman/batman.png"},
     {type:'image', src:"bgscreen.png"},

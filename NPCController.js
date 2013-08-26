@@ -42,8 +42,12 @@ NPCController.prototype = {
         }
     },
 
+    setGameController: function(controller) {
+        this._gameCtrl = controller;
+    },
+
     kill: function() {
-        this.rootNode.removeFromParent(true);
+        this._gameCtrl.removeNPC(this.rootNode);
     },
 
     probablyMoveToFloor: function(floorY) {
