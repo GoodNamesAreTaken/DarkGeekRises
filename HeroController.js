@@ -10,7 +10,7 @@ HeroController.prototype = {
     moveLeft: function (dt) {
         this.sprite.setFlipX(true);
         var pos = this.rootNode.getPosition(),
-            halfWidth = this.rootNode.getContentSize().width;
+            halfWidth = this.rootNode.getContentSize().width / 2;
         pos.x -= HeroController.SPEED * dt;
         if (pos.x - halfWidth <= 60) {
             pos.x = 60 + halfWidth;
@@ -26,7 +26,7 @@ HeroController.prototype = {
     moveRight: function (dt) {
         this.sprite.setFlipX(false);
         var pos = this.rootNode.getPosition(),
-            halfWidth = this.rootNode.getContentSize().width;
+            halfWidth = this.rootNode.getContentSize().width / 2;
         pos.x += HeroController.SPEED * dt;
 
         if (pos.x + halfWidth > 840) {

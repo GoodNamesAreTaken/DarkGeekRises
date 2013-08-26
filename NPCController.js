@@ -87,13 +87,13 @@ NPCController.prototype = {
 
     _isOutOfLeftBound: function () {
         var x = this.rootNode.getPosition().x,
-            halfWidth = this.rootNode.getContentSize().width;
+            halfWidth = this.rootNode.getContentSize().width / 2;
         return x - halfWidth / 2 < 60;
     },
 
     _isOutOfRightBound: function () {
         var x = this.rootNode.getPosition().x,
-            halfWidth = this.rootNode.getContentSize().width;
+            halfWidth = this.rootNode.getContentSize().width / 2;
         return x + halfWidth > 840;
     },
 
