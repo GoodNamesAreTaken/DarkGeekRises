@@ -3,7 +3,7 @@ var CCBMainScene = cc.Scene.extend({
         this._super();
 
         cc.BuilderReader.setResolutionScale(1);
-        var node = cc.BuilderReader.load("GameplayScene.ccbi");
+        var node = cc.BuilderReader.load("TitleScreen.ccbi");
 
         this.addChild(node);
         this.setPosition(cc.p(0, 0));

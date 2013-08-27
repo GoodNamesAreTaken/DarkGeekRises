@@ -6,10 +6,16 @@
 	<dict>
 		<key>bomb.wav</key>
 		<string>bomb.mp3</string>
+		<key>bomb_apears.wav</key>
+		<string>bomb_apears.mp3</string>
 		<key>drop.wav</key>
 		<string>drop.mp3</string>
 		<key>pickup.wav</key>
 		<string>pickup.mp3</string>
+		<key>powerup.wav</key>
+		<string>powerup.mp3</string>
+		<key>theme.wav</key>
+		<string>theme.mp3</string>
 	</dict>
 	<key>metadata</key>
 	<dict>

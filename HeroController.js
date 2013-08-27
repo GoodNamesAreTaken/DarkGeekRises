@@ -112,6 +112,10 @@ HeroController.prototype = {
     animateHit: function() {
         this.rootNode.runAction(cc.Blink.create(1, 4));
         //this.rootNode.animationManager.runAnimationsForSequenceNamed('flicker');
+    },
+
+    animateShout: function() {
+        this.rootNode.animationManager.runAnimationsForSequenceNamed('shout');
     }
 
 };

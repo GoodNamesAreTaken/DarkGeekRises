@@ -48,11 +48,6 @@ ThrashCanController.prototype = Object.create(ContainerController.prototype, {
 });
 
 ThrashCanController.prototype.explode = function() {
-    this._shotsRemaining--;
-    this.hasBomb = false;
-    if (this._shotsRemaining <= 0) {
-        ContainerController.prototype.explode.apply(this, arguments);
-    }
 };
 
 

@@ -9,5 +9,11 @@ GameOverSceneController.prototype = {
         var minutes = Math.floor(time / 60),
             seconds = time % 60;
         this.totalPlayedLabel.setString('Total Convention Time: ' + minutes + ' minutes ' + seconds + ' seconds');
+    },
+
+
+    playGame: function() {
+        var scene = cc.BuilderReader.loadAsScene('GameplayScene.ccbi');
+        cc.Director.getInstance().replaceScene(scene);
     }
 };

@@ -149,7 +149,7 @@ GameplaySceneController.prototype = {
 
     _checkPowerUp: function() {
         if (this._powerUp && this._heroCollides(this._powerUp)) {
-            cc.AudioEngine.getInstance().playEffect('pickup');
+            cc.AudioEngine.getInstance().playEffect('powerup');
             var power = this._powerUp.controller.power;
             if (power.instant) {
                 this[power.func].call(this);
@@ -214,7 +214,7 @@ GameplaySceneController.prototype = {
     },
 
     _spawnBomb: function() {
-        cc.AudioEngine.getInstance().playEffect('drop');
+        cc.AudioEngine.getInstance().playEffect('bomb_apears');
         var bomb = cc.BuilderReader.load('Bomb.ccbi'),
             y = this._floorsY[Math.floor(Math.random() * this._floorsY.length)],
             x = 60 + Math.floor(Math.random() * (900 - 120));
@@ -317,16 +317,19 @@ GameplaySceneController.prototype = {
     //spacebar actions
     
     _pickBomb: function() {
+        cc.AudioEngine.getInstance().playEffect('pickup');
         this.hero.controller.pickBomb(this._bombToPick);
         this._bombToPick = null;
     },
 
     _dropBomb: function() {
+        cc.AudioEngine.getInstance().playEffect('drop');
         var bomb = this.hero.controller.dropBomb();
         this.level.addChild(bomb);
     },
 
     _putInContainer: function() {
+        cc.AudioEngine.getInstance().playEffect('drop');
         var bomb = this.hero.controller.dropBomb();
         this._containerToUse.controller.putBombIn(bomb);
     },
@@ -354,12 +357,14 @@ GameplaySceneController.prototype = {
 
     //powerups
     _shout: function() {
+        this.hero.controller.animateShout();
        this._eachNPCInRange(200, function(npc) {
            npc.controller.runAway(this.hero.getPosition());
        });
     },
 
     _superShout: function() {
+        this.hero.controller.animateShout();
        this._npcs.forEach(function(npc) {
            npc.controller.runAway(this.hero.getPosition());
        }, this);
